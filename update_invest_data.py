@@ -294,8 +294,10 @@ def main():
     данные и дополняет ими файл с данными.
     '''
     now = datetime.datetime.now().year
-    # last_year_in_table = pd.to_datetime(pd.read_csv('invest.csv')['Дата'].iloc[-1]).year
-    last_year_in_table = pd.to_datetime(pd.read_excel('rez_file_Y_v2.xlsx')['Целевой показатель'].iloc[-1]).year
+    last_year_in_table = pd.to_datetime(pd.read_excel('rez_file_Y_v2.xlsx').dropna(subset=['Инвестиции в основной '
+                                                                                           'капитал накопленным '
+                                                                                           'итогом, млрд руб']).iloc[ 
+                                            -1]['Целевой показатель']).year
 
     if now - last_year_in_table < 2:
         years = [now]
